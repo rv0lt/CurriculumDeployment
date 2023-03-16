@@ -29,6 +29,6 @@ COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx/ /sbin/nginx/
 
 EXPOSE 8080
-
+RUN chmod 755 /sbin/nginx
 ENTRYPOINT ["/sbin/nginx"]
 CMD ["-g", "daemon off;"]
