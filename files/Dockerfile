@@ -16,7 +16,7 @@ RUN tlmgr install blindtext
 
 RUN pdflatex resume.tex -o resume.pdf
 
-FROM nginx:stable-alpine as base
+FROM nginx:alpine as base
 
 RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/
 
