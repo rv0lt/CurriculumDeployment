@@ -25,7 +25,7 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx
 RUN chown nginx:nginx /sbin/nginx
 USER nginx
-RUN chmod +x /sbin/nginx
+RUN chmod 777 /sbin/nginx
 
 FROM scratch
 
