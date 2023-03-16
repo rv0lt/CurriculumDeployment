@@ -52,13 +52,14 @@ COPY --from=base /lib/x86_64-linux-gnu/libz.so.1 /lib/x86_64-linux-gnu/libz.so.1
 COPY --from=base /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libc.so.6
 COPY --from=base  /lib64/ld-linux-x86-64.so.2  /lib64/ld-linux-x86-64.so.2
 
+COPY --from=base /var/lib/nginx/ /var/lib/nginx/
+
 COPY --from=base /usr/share/nginx/ /usr/share/nginx/
 COPY --from=base /var/log/nginx/ /var/log/nginx/ 
 COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx /sbin/nginx
 
 COPY --from=base /usr/lib/ /usr/lib/
-#COPY --from=base /var/ /var/
 
 EXPOSE 8080
 #USER nginx
