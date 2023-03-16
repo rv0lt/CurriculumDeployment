@@ -17,18 +17,21 @@ RUN tlmgr install blindtext
 RUN pdflatex resume.tex -o resume.pdf
 
 FROM ubuntu/nginx as base
+WORKDIR /
 
 COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
 
+RUN useradd -u 10001 scratchuser
+
 FROM scratch
 
-COPY --from=base /etc/passwd /etc/group /etc/
+COPY --from=base /etc/passwd /etc/passwd
 COPY --from=base /usr/share/nginx /usr/share/nginx
 COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx/ /sbin/nginx/
 
 EXPOSE 8080
-RUN chmod 755 /sbin/nginx
+USER scratchuser
 ENTRYPOINT ["/sbin/nginx"]
 CMD ["-g", "daemon off;"]
