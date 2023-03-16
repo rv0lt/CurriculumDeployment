@@ -22,11 +22,12 @@ FROM ubuntu/nginx as base
 COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-#RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx
+RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx
 #USER nginx
 #RUN chmod 777 /sbin/nginx
 
 FROM scratch 
+
 COPY --from=base /lib /lib
 COPY --from=base /usr/lib /usr/lib
 COPY --from=base /etc/passwd /etc/passwd
@@ -35,5 +36,6 @@ COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx/ /sbin/nginx/
 
 EXPOSE 8080
-ENTRYPOINT ["/sbin/nginx"]
-CMD ["-g", "daemon off;"]
+USER nginx
+#ENTRYPOINT ["/sbin/nginx"]
+CMD ["/sbin/nginx","-g", "daemon off;"]
