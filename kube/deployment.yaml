@@ -1,37 +1,40 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cv-svc
   labels:
-    app: cv
+    app: nginx
+  name: nginx
 spec:
   ports:
-    - port: 8080
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
   selector:
-    app: cv
-  type: ClusterIP
-
+    app: nginx
+  type: NodePort
+status:
+  loadBalancer: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cv-deployment
   labels:
-    app: cv
+    app: nginx
+  name: nginx
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: cv
-  strategy:
-    type: Recreate
+      app: nginx
+  strategy: {}
   template:
     metadata:
       labels:
-        app: cv
+        app: nginx
     spec:
       containers:
       - image: rv0lt/mycv
-        name: cv
-        ports:
-        - containerPort: 8080
-          name: cv
+        name: nginx
+        resources: {}
+status: {}
