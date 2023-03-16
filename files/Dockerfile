@@ -16,12 +16,9 @@ RUN tlmgr install blindtext
 
 RUN pdflatex resume.tex -o resume.pdf
 
-FROM nginx:alpine
+FROM nginx:stable-alpine
 
 COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080
-
-#ENTRYPOINT [ "sleep" ]
-#CMD ["9999"]
