@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cv-svc
+  labels:
+    app: cv
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: cv
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cv-deployment
+  labels:
+    app: cv
+spec:
+  selector:
+    matchLabels:
+      app: cv
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cv
+    spec:
+      containers:
+      - image: rv0lt/mycv
+        name: cv
+        ports:
+        - containerPort: 8080
+          name: cv
