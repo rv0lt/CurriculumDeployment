@@ -17,13 +17,13 @@ RUN tlmgr install blindtext
 RUN pdflatex resume.tex -o resume.pdf
 
 FROM ubuntu/nginx as base
-WORKDIR /
+#WORKDIR /
 
 COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx /sbin/nginx
-USER nginx
+#RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx /sbin/nginx
+#USER nginx
 #RUN chmod 777 /sbin/nginx
 
 #FROM scratch 
