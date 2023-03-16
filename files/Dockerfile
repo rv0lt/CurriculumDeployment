@@ -57,7 +57,7 @@ COPY --from=base /var/log/nginx/ /var/log/nginx/
 COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx /sbin/nginx
 
-#COPY --from=base /var/ /var/
+COPY --from=base /var/ /var/
 
 EXPOSE 8080
 #USER nginx
