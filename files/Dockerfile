@@ -27,7 +27,7 @@ RUN chown nginx:nginx /sbin/nginx
 USER nginx
 RUN chmod 777 /sbin/nginx
 
-FROM scratch
+FROM busybox 
 
 COPY --from=base /etc/passwd /etc/passwd
 COPY --from=base /usr/share/nginx /usr/share/nginx
