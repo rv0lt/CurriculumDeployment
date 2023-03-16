@@ -22,19 +22,17 @@ WORKDIR /
 COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx
-RUN chown nginx:nginx /sbin/nginx
+RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx /sbin/nginx
 USER nginx
-RUN chmod 777 /sbin/nginx
+#RUN chmod 777 /sbin/nginx
 
-FROM busybox 
+#FROM scratch 
 
-COPY --from=base /etc/passwd /etc/passwd
-COPY --from=base /usr/share/nginx /usr/share/nginx
-COPY --from=base /etc/nginx/ /etc/nginx/
-COPY --from=base /sbin/nginx/ /sbin/nginx/
+#COPY --from=base /etc/passwd /etc/passwd
+#COPY --from=base /usr/share/nginx /usr/share/nginx
+#COPY --from=base /etc/nginx/ /etc/nginx/
+#COPY --from=base /sbin/nginx/ /sbin/nginx/
 
 EXPOSE 8080
-USER nginx
-ENTRYPOINT ["/sbin/nginx"]
-CMD ["-g", "daemon off;"]
+#ENTRYPOINT ["/sbin/nginx"]
+#CMD ["-g", "daemon off;"]
