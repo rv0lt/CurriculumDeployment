@@ -16,9 +16,9 @@ RUN tlmgr install blindtext
 
 RUN pdflatex resume.tex -o resume.pdf
 
-FROM nginx:stable-alpine as base
+FROM nginx:alpine as base
 
-RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/
+#RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/
 
 FROM scratch
 
@@ -32,7 +32,6 @@ COPY --from=base [ \
     "/lib/ld-musl-x86_64.so.1", \
     "/lib/" \
     ]
-
 COPY --from=base ["/usr/lib/libpcre2-8.so.0", "/usr/lib/"]
 COPY --from=base ["/usr/sbin/nginx", "/usr/sbin/nginx"]
 COPY --from=base ["/var/log/nginx", "/var/log/nginx"]
@@ -45,5 +44,6 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080
 
-USER nginx
+#USER nginx
+
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
