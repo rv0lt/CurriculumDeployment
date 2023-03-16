@@ -16,8 +16,6 @@ RUN tlmgr install blindtext
 
 RUN pdflatex resume.tex -o resume.pdf
 
-#RUN resume.pdf -o resume.html
-
 FROM nginx:alpine
 
 COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
