@@ -69,6 +69,8 @@ COPY --from=base /var/log/nginx/ /var/log/nginx/
 COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx /sbin/nginx
 
+COPY --from=base /usr/lib/ /usr/lib/
+
 EXPOSE 8080
 #USER nginx
 #ENTRYPOINT ["/sbin/nginx"]
