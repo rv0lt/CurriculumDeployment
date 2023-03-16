@@ -23,7 +23,8 @@ COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
 
 RUN useradd -u 10001 scratchuser
-RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/
+RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx /sbin/nginx/
+
 FROM scratch
 
 COPY --from=base /etc/passwd /etc/passwd
