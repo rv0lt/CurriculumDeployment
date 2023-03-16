@@ -2,19 +2,17 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: nginx
-  name: nginx
+    app: cvapp
+  name: cvapp-svc
 spec:
   ports:
-  - name: 80-80
-    port: 80
+  - port: 80
     protocol: TCP
+    nodePort: 30000
     targetPort: 80
   selector:
     app: nginx
   type: NodePort
-status:
-  loadBalancer: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,7 +25,6 @@ spec:
   selector:
     matchLabels:
       app: nginx
-  strategy: {}
   template:
     metadata:
       labels:
@@ -35,6 +32,12 @@ spec:
     spec:
       containers:
       - image: rv0lt/mycv
+        imagePullPolicy: Always
         name: nginx
-        resources: {}
-status: {}
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "200m"
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
