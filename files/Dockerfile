@@ -27,7 +27,8 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 #RUN chmod 777 /sbin/nginx
 
 FROM scratch 
-
+COPY --from=base /lib /lib
+COPY --from=base /usr/lib /usr/lib
 COPY --from=base /etc/passwd /etc/passwd
 COPY --from=base /usr/share/nginx /usr/share/nginx
 COPY --from=base /etc/nginx/ /etc/nginx/
