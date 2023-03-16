@@ -23,7 +23,7 @@ COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
 
 RUN useradd -u 10001 scratchuser
-
+RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/
 FROM scratch
 
 COPY --from=base /etc/passwd /etc/passwd
@@ -32,6 +32,6 @@ COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx/ /sbin/nginx/
 
 EXPOSE 8080
-USER root
+USER nginx
 ENTRYPOINT ["/sbin/nginx"]
 CMD ["-g", "daemon off;"]
