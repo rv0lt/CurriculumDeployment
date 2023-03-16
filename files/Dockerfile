@@ -30,8 +30,10 @@ FROM scratch
 
 # nginx: [emerg] getgrnam("www-data") failed (2: No such file or directory) in /etc/nginx/nginx.conf:1
 # Something in /etc is making this error if not copied, i don't know which file yet...
+# samw wirh var
 
 COPY --from=base /etc/ /etc/ 
+COPY --from=base /var/ /var/
 COPY --from=base /etc/passwd /etc/passwd
 
 # ldd /sbin/nginx
