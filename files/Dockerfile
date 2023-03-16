@@ -35,7 +35,6 @@ COPY --from=base /usr/lib/ /usr/lib/
 COPY --from=base /usr/share/nginx/ /usr/share/nginx/
 COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx /sbin/nginx
-COPY --from=base /var/ /var/
 
 EXPOSE 8080
 USER nginx
