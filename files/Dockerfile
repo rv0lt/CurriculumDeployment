@@ -24,7 +24,7 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 
 RUN useradd -u 10001 scratchuser
 RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx
-RUN chown nginx:nginx /sbin/nginx/
+RUN chown nginx:nginx /sbin/nginx
 
 FROM scratch
 
