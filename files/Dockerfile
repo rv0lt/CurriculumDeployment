@@ -28,9 +28,10 @@ RUN chown -R nginx:nginx /etc/nginx/ /usr/share/nginx
 
 FROM scratch 
 
-COPY --from=base /lib /lib
-COPY --from=base /usr/lib /usr/lib
 COPY --from=base /etc/passwd /etc/passwd
+COPY --from=base /lib /lib
+COPY --from=base /lib64 /lib64
+COPY --from=base /usr/lib /usr/lib
 COPY --from=base /usr/share/nginx /usr/share/nginx
 COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx/ /sbin/nginx/
