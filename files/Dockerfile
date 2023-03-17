@@ -29,7 +29,7 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 FROM scratch 
 
 # fix var
-COPY --from=base /var/ /var/
+COPY --from=base /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html
 
 COPY --from=base /etc/group /etc/group 
 COPY --from=base /etc/passwd /etc/passwd
