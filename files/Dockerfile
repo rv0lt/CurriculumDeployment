@@ -1,6 +1,6 @@
 FROM pandoc/latex AS pandoc
 
-COPY cv /data/cv/
+COPY ./files/cv /data/cv/
 
 WORKDIR /data/cv
 
@@ -19,7 +19,7 @@ RUN pdflatex resume.tex -o resume.pdf
 FROM ubuntu/nginx as base
 
 COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY ./files/default.conf /etc/nginx/conf.d/default.conf
 
 # TODO: Fix running as root
 
