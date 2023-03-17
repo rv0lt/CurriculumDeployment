@@ -32,10 +32,10 @@ FROM scratch
 # Something in /etc is making this error if not copied, i don't know which file yet...
 # samw wirh var
 
-COPY --from=base /etc/ /etc/ 
+COPY --from=base /etc/group /etc/group 
 COPY --from=base /var/ /var/
-COPY --from=base /etc/passwd /etc/passwd
 
+COPY --from=base /etc/passwd /etc/passwd
 # ldd /sbin/nginx
 #  linux-vdso.so.1 (0x00007ffce5ea2000)
 #  libcrypt.so.1 => /lib/x86_64-linux-gnu/libcrypt.so.1 (0x00007f09d0948000)
@@ -52,7 +52,6 @@ COPY --from=base /usr/lib/x86_64-linux-gnu/libssl.so.3 /usr/lib/x86_64-linux-gnu
 COPY --from=base /usr/lib/x86_64-linux-gnu/libcrypto.so.3 /usr/lib/x86_64-linux-gnu/libcrypto.so.3
 COPY --from=base /usr/lib/x86_64-linux-gnu/libz.so.1 /usr/lib/x86_64-linux-gnu/libz.so.1
 COPY --from=base /usr/lib/x86_64-linux-gnu/libc.so.6 /usr/lib/x86_64-linux-gnu/libc.so.6
-COPY --from=base  /usr/lib64/ld-linux-x86-64.so.2  /usr/lib64/ld-linux-x86-64.so.2
 
 COPY --from=base /lib/x86_64-linux-gnu/libcrypt.so.1 /lib/x86_64-linux-gnu/libcrypt.so.1
 COPY --from=base /lib/x86_64-linux-gnu/libpcre.so.3 /lib/x86_64-linux-gnu/libpcre.so.3
@@ -63,13 +62,11 @@ COPY --from=base /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libc.so.6
 COPY --from=base  /lib64/ld-linux-x86-64.so.2  /lib64/ld-linux-x86-64.so.2
 
 COPY --from=base /var/lib/nginx/ /var/lib/nginx/
-
+COPY --from=base /usr/lib/nginx/ /usr/lib/nginx/
 COPY --from=base /usr/share/nginx/ /usr/share/nginx/
 COPY --from=base /var/log/nginx/ /var/log/nginx/ 
 COPY --from=base /etc/nginx/ /etc/nginx/
 COPY --from=base /sbin/nginx /sbin/nginx
-
-COPY --from=base /usr/lib/ /usr/lib/
 
 EXPOSE 8080
 #USER nginx
