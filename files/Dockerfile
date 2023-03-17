@@ -45,6 +45,8 @@ COPY --from=base /etc/passwd /etc/passwd
 #  libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f09d03c0000)
 #  libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f09d01b9000)
 #  /lib64/ld-linux-x86-64.so.2 (0x00007f09d0adb000)
+COPY --from=base /usr/lib/ /usr/lib/
+COPY --from=base /lib/ /lib/
 
 COPY --from=base /usr/lib/x86_64-linux-gnu/libcrypt.so.1 /usr/lib/x86_64-linux-gnu/libcrypt.so.1
 COPY --from=base /usr/lib/x86_64-linux-gnu/libpcre.so.3 /usr/lib/x86_64-linux-gnu/libpcre.so.3
