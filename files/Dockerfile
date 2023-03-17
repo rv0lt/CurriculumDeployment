@@ -45,12 +45,12 @@ COPY --from=base /etc/passwd /etc/passwd
 #nginx: [emerg] dlopen() "/usr/share/nginx/modules/ngx_http_auth_pam_module.so" failed (libpam.so.0: cannot open shared object file: No such file or directory) in /etc/nginx/modules-enabled/50-mod-http-auth-pam.conf:1
 COPY --from=base /usr/lib/x86_64-linux-gnu/libpam.so.0 /usr/lib/x86_64-linux-gnu/libpam.so.0
 COPY --from=base /usr/lib/x86_64-linux-gnu/libcrypt.so.1 /usr/lib/x86_64-linux-gnu/libcrypt.so.1
-COPY --from=base /usr/lib/x86_64-linux-gnu/libpcre.so.3 /usr/lib/x86_64-linux-gnu/libpcre.so.3
-COPY --from=base /usr/lib/x86_64-linux-gnu/libssl.so.3 /usr/lib/x86_64-linux-gnu/libssl.so.3
-COPY --from=base /usr/lib/x86_64-linux-gnu/libcrypto.so.3 /usr/lib/x86_64-linux-gnu/libcrypto.so.3
-COPY --from=base /usr/lib/x86_64-linux-gnu/libz.so.1 /usr/lib/x86_64-linux-gnu/libz.so.1
-COPY --from=base /usr/lib/x86_64-linux-gnu/libc.so.6 /usr/lib/x86_64-linux-gnu/libc.so.6
+COPY --from=base /lib/x86_64-linux-gnu/ /lib/x86_64-linux-gnu/
 
+COPY --from=base /lib/x86_64-linux-gnu/libgcc_s.so.1 /lib/x86_64-linux-gnu/libgcc_s.so.1
+COPY --from=base /lib/x86_64-linux-gnu/libstdc++.so.6 /lib/x86_64-linux-gnu/libstdc++.so.6
+COPY --from=base /lib/x86_64-linux-gnu/libicudata.so.71 /lib/x86_64-linux-gnu/libicudata.so.71
+COPY --from=base /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libm.so.6
 COPY --from=base /lib/x86_64-linux-gnu/liblzma.so.5 /lib/x86_64-linux-gnu/liblzma.so.5
 COPY --from=base /lib/x86_64-linux-gnu/libicuuc.so.71 /lib/x86_64-linux-gnu/libicuuc.so.71
 COPY --from=base /lib/x86_64-linux-gnu/libxml2.so.2 /lib/x86_64-linux-gnu/libxml2.so.2
