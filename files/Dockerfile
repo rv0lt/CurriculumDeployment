@@ -32,13 +32,19 @@ FROM scratch
 # Something in /etc is making this error if not copied, i don't know which file yet...
 # samw wirh var
 
+# apt  dpkg  init  locale  lsb  mime  nginx  os-release  sysctl.d  systemd  tc  terminfo  tmpfiles.d  udev  usrmerge  x86_64-linux-gnu
+
 COPY --from=base /var/ /var/
 
 COPY --from=base /etc/group /etc/group 
 COPY --from=base /etc/passwd /etc/passwd
 
-COPY --from=base /lib/ /lib/
-
+COPY --from=base /lib/nginx /lib/nginx
+COPY --from=base /lib/x86_64-linux-gnu/libpam.so.0 /lib/x86_64-linux-gnu/libpam.so.0
+COPY --from=base /lib/x86_64-linux-gnu/libgcc_s.so.1 /lib/x86_64-linux-gnu/libgcc_s.so.1
+COPY --from=base /lib/x86_64-linux-gnu/libstdc++.so.6 /lib/x86_64-linux-gnu/libstdc++.so.6
+COPY --from=base /lib/x86_64-linux-gnu/libicudata.so.71 /lib/x86_64-linux-gnu/libicudata.so.71
+COPY --from=base /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libm.so.6
 COPY --from=base /lib/x86_64-linux-gnu/libcrypt.so.1 /lib/x86_64-linux-gnu/libcrypt.so.1
 COPY --from=base /lib/x86_64-linux-gnu/libpcre.so.3 /lib/x86_64-linux-gnu/libpcre.so.3
 COPY --from=base /lib/x86_64-linux-gnu/libssl.so.3 /lib/x86_64-linux-gnu/libssl.so.3
