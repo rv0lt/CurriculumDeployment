@@ -28,13 +28,10 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 
 FROM scratch 
 
-# nginx: [emerg] getgrnam("www-data") failed (2: No such file or directory) in /etc/nginx/nginx.conf:1
-# Something in /etc is making this error if not copied, i don't know which file yet...
-# samw wirh var
 
-COPY --from=base /etc/group /etc/group 
 COPY --from=base /var/ /var/
 
+COPY --from=base /etc/group /etc/group 
 COPY --from=base /etc/passwd /etc/passwd
 # ldd /sbin/nginx
 #  linux-vdso.so.1 (0x00007ffce5ea2000)
@@ -45,8 +42,9 @@ COPY --from=base /etc/passwd /etc/passwd
 #  libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f09d03c0000)
 #  libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f09d01b9000)
 #  /lib64/ld-linux-x86-64.so.2 (0x00007f09d0adb000)
+#nginx: [emerg] dlopen() "/usr/share/nginx/modules/ngx_http_auth_pam_module.so" failed (libpam.so.0: cannot open shared object file: No such file or directory) in /etc/nginx/modules-enabled/50-mod-http-auth-pam.conf:1
 COPY --from=base /usr/lib/ /usr/lib/
-COPY --from=base /lib/ /lib/
+COPY --from=base /lib/x86_64-linux-gnu/libpamc.so.0 /lib/x86_64-linux-gnu/libpamc.so.0
 
 COPY --from=base /usr/lib/x86_64-linux-gnu/libcrypt.so.1 /usr/lib/x86_64-linux-gnu/libcrypt.so.1
 COPY --from=base /usr/lib/x86_64-linux-gnu/libpcre.so.3 /usr/lib/x86_64-linux-gnu/libpcre.so.3
