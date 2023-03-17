@@ -36,24 +36,9 @@ COPY --from=base /var/ /var/
 
 COPY --from=base /etc/group /etc/group 
 COPY --from=base /etc/passwd /etc/passwd
-# ldd /sbin/nginx
-#  linux-vdso.so.1 (0x00007ffce5ea2000)
-#  libcrypt.so.1 => /lib/x86_64-linux-gnu/libcrypt.so.1 (0x00007f09d0948000)
-#  libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f09d08d2000)
-#  libssl.so.3 => /lib/x86_64-linux-gnu/libssl.so.3 (0x00007f09d082d000)
-#  libcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007f09d03dc000)
-#  libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f09d03c0000)
-#  libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f09d01b9000)
-#  /lib64/ld-linux-x86-64.so.2 (0x00007f09d0adb000)
+
 COPY --from=base /usr/lib/ /usr/lib/
 COPY --from=base /lib/ /lib/
-
-COPY --from=base /usr/lib/x86_64-linux-gnu/libcrypt.so.1 /usr/lib/x86_64-linux-gnu/libcrypt.so.1
-COPY --from=base /usr/lib/x86_64-linux-gnu/libpcre.so.3 /usr/lib/x86_64-linux-gnu/libpcre.so.3
-COPY --from=base /usr/lib/x86_64-linux-gnu/libssl.so.3 /usr/lib/x86_64-linux-gnu/libssl.so.3
-COPY --from=base /usr/lib/x86_64-linux-gnu/libcrypto.so.3 /usr/lib/x86_64-linux-gnu/libcrypto.so.3
-COPY --from=base /usr/lib/x86_64-linux-gnu/libz.so.1 /usr/lib/x86_64-linux-gnu/libz.so.1
-COPY --from=base /usr/lib/x86_64-linux-gnu/libc.so.6 /usr/lib/x86_64-linux-gnu/libc.so.6
 
 COPY --from=base /lib/x86_64-linux-gnu/libcrypt.so.1 /lib/x86_64-linux-gnu/libcrypt.so.1
 COPY --from=base /lib/x86_64-linux-gnu/libpcre.so.3 /lib/x86_64-linux-gnu/libpcre.so.3
