@@ -37,7 +37,6 @@ COPY --from=base /var/ /var/
 COPY --from=base /etc/group /etc/group 
 COPY --from=base /etc/passwd /etc/passwd
 
-COPY --from=base /usr/lib/ /usr/lib/
 COPY --from=base /lib/ /lib/
 
 COPY --from=base /lib/x86_64-linux-gnu/libcrypt.so.1 /lib/x86_64-linux-gnu/libcrypt.so.1
