@@ -1,24 +1,25 @@
 FROM pandoc/latex AS pandoc
 
-COPY ./files/cv /data/cv/
+# COPY ./files/cv /data/cv/
 
-WORKDIR /data/cv
+# WORKDIR /data/cv
 
-RUN tlmgr install sourcesanspro
-RUN tlmgr install ly1
-RUN tlmgr install moresize
-RUN tlmgr install anyfontsize
-RUN tlmgr install enumitem
-RUN tlmgr install titlesec
-RUN tlmgr install standalone
-RUN tlmgr install svn-prov
-RUN tlmgr install blindtext
+# RUN tlmgr install sourcesanspro
+# RUN tlmgr install ly1
+# RUN tlmgr install moresize
+# RUN tlmgr install anyfontsize
+# RUN tlmgr install enumitem
+# RUN tlmgr install titlesec
+# RUN tlmgr install standalone
+# RUN tlmgr install svn-prov
+# RUN tlmgr install blindtext
 
-RUN pdflatex resume.tex -o resume.pdf
+# RUN pdflatex resume.tex -o resume.pdf
 
 FROM ubuntu/nginx as base
 
-COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
+#COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
+COPY --from=pandoc ./resume.pdf /usr/share/nginx
 COPY ./files/default.conf /etc/nginx/conf.d/default.conf
 
 # TODO: Fix running as root
