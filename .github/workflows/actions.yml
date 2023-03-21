@@ -16,7 +16,7 @@ jobs:
         name: Build
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: /files/cv/resume.tex
+          root_file: ./resume.tex
           working_directory: /files/cv
       -
         name: Login to Docker Hub
