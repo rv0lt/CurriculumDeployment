@@ -19,7 +19,7 @@ FROM pandoc/latex AS pandoc
 FROM ubuntu/nginx as base
 
 #COPY --from=pandoc /data/cv/resume.pdf /usr/share/nginx
-COPY --from=pandoc ./files/cv/resume.pdf /usr/share/nginx
+COPY ./files/cv/resume.pdf /usr/share/nginx
 COPY ./files/default.conf /etc/nginx/conf.d/default.conf
 
 # TODO: Fix running as root
