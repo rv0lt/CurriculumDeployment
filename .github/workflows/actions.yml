@@ -1,4 +1,4 @@
-name: ci
+name: pipeline
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       - 
-        name: Build
+        name: Build-latex
         uses: xu-cheng/latex-action@v2
         with:
           root_file: resume.tex
@@ -28,7 +28,7 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Build and push
+        name: Build img and push
         uses: docker/build-push-action@v4
         with:
           context: .
