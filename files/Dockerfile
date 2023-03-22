@@ -1,7 +1,7 @@
 FROM ubuntu/nginx as base
 
-COPY cv/resume.pdf /usr/share/nginx
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY ./files/cv/resume.pdf /usr/share/nginx
+COPY ./files/default.conf /etc/nginx/conf.d/default.conf
 
 # create empty run directory
 RUN mkdir -p /run/run
