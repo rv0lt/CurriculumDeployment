@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cv-deployment.fullname" . }}
+  labels:
+    {{- include "cv-deployment.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      nodePort: {{ .Values.service.nodeport }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "cv-deployment.selectorLabels" . | nindent 4 }}
