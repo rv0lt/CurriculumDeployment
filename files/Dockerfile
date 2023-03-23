@@ -16,6 +16,7 @@ COPY --from=base /etc/group /etc/group
 COPY --from=base /etc/passwd /etc/passwd
                               
 # COPY the libraries needed to run nginx
+# Some libraries are obtained using ldd. The rest are requieres libraries used by the actived modules by default
 COPY --from=base /lib/x86_64-linux-gnu/libgcc_s.so.1 /lib/x86_64-linux-gnu/libgcc_s.so.1
 COPY --from=base /lib/x86_64-linux-gnu/libstdc++.so.6 /lib/x86_64-linux-gnu/libstdc++.so.6
 COPY --from=base /lib/x86_64-linux-gnu/libicudata.so.71 /lib/x86_64-linux-gnu/libicudata.so.71
