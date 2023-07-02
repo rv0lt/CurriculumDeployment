@@ -1,4 +1,4 @@
-FROM ubuntu/nginx as base
+FROM ubuntu/nginx:1.18-21.10_edge as base
 
 COPY ./files/cv/resume.pdf /usr/share/nginx
 COPY ./files/default.conf /etc/nginx/conf.d/default.conf
